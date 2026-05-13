@@ -1,0 +1,14 @@
+{
+  "name": "pipeworx",
+  "owner": {
+    "name": "Pipeworx",
+    "url": "https://pipeworx.io"
+  },
+  "plugins": [
+    {
+      "name": "pipeworx",
+      "source": "./",
+      "description": "Connect Claude Code to ~1,423 live data tools across ~392 packs via the Pipeworx MCP gateway."
+    }
+  ]
+}
