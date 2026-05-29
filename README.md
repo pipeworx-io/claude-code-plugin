@@ -1,6 +1,6 @@
 # Pipeworx Claude Code Plugin
 
-Connect Claude Code to live data from **2,833 tools across 623 packs** — SEC filings, USPTO patents, FRED economic data, FDA drug data, Census, EPA, ATTOM real estate, weather, and 615+ more.
+Connect Claude Code to live data from **2,869 tools across 633 packs** — SEC filings, USPTO patents, FRED economic data, FDA drug data, Census, EPA, ATTOM real estate, weather, and 625+ more.
 
 Backed by the [Pipeworx](https://pipeworx.io) MCP gateway at `gateway.pipeworx.io`.
 
@@ -13,7 +13,7 @@ Backed by the [Pipeworx](https://pipeworx.io) MCP gateway at `gateway.pipeworx.i
 
 ## How it works
 
-The plugin loads **17 meta-tools** into Claude's context — not all 2,833 underlying tools. That's deliberate: dumping every tool definition into the context window burns tokens you'll never use (the "context tax").
+The plugin loads **17 meta-tools** into Claude's context — not all 2,869 underlying tools. That's deliberate: dumping every tool definition into the context window burns tokens you'll never use (the "context tax").
 
 Instead, Claude reaches for `ask_pipeworx` or `discover_tools` and the gateway routes the request to the right pack at session time. You get the full catalog without paying for it up front.
 
