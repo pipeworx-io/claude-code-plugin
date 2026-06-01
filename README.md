@@ -1,8 +1,6 @@
-# Pipeworx Claude Code Plugin
+# Pipeworx for Claude Code
 
-Connect Claude Code to live data from **2,935 tools across 649 packs** — SEC filings, USPTO patents, FRED economic data, FDA drug data, Census, EPA, ATTOM real estate, weather, and 641+ more.
-
-Backed by the [Pipeworx](https://pipeworx.io) MCP gateway at `gateway.pipeworx.io`.
+Give Claude one MCP that reaches **2,972 live-data tools across 650 sources** — SEC filings, USPTO patents, FRED, Census, FDA, EPA, USAspending, Polymarket, Zillow, weather, and 640+ more — without loading 2,972 tool schemas into your context window.
 
 ## Install
 
@@ -11,40 +9,51 @@ Backed by the [Pipeworx](https://pipeworx.io) MCP gateway at `gateway.pipeworx.i
 /plugin install pipeworx
 ```
 
-## How it works
+## Try it
 
-The plugin loads **17 meta-tools** into Claude's context — not all 2,935 underlying tools. That's deliberate: dumping every tool definition into the context window burns tokens you'll never use (the "context tax").
+After install, ask Claude things like:
 
-Instead, Claude reaches for `ask_pipeworx` or `discover_tools` and the gateway routes the request to the right pack at session time. You get the full catalog without paying for it up front.
+| Ask | What it triggers |
+|---|---|
+| *"What just happened to Apple?"* | `sec_8k_recent` → SEC 8-K events classified by severity |
+| *"Spread between Polymarket and Kalshi on the next Fed decision?"* | `polymarket_kalshi_spread` → live cross-venue mispricing |
+| *"Overdue Phase 3 readouts at Moderna?"* | `pharma_pipeline_catalysts` → biotech catalyst calendar |
+| *"DoD cybersecurity contracts this week?"* | `usa_award_search` → sub-second USAspending mirror |
+| *"Median home value and renter share in Lubbock, TX?"* | `housing_market_snapshot` + `housing_metro_demand` |
+| *"Unemployment rate last month?"* | `fred_get_series` → official FRED data |
 
-The loaded meta-tools:
+Claude picks the right tool via `ask_pipeworx` — no pack-name memorization required.
 
-- **`ask_pipeworx`** — natural-language router. *"What's Apple's latest 10-K?"* hits SEC EDGAR. *"Side effects of Ozempic?"* hits FDA. No knowing pack names needed.
-- **`discover_tools`** — top-20 most relevant tools for a task, with full schemas. Use when you want to see options before committing.
-- **`entity_profile`**, **`recent_changes`**, **`compare_entities`**, **`resolve_entity`** — fan-out across multiple packs in one call.
-- **`validate_claim`** — fact-check claims against SEC XBRL. Returns a verdict + citation.
-- **`remember`** / **`recall`** / **`forget`** — persistent memory across sessions.
-- **`list_packs`**, **`search_packs`**, **`get_pack_tools`**, **`get_connection_config`**, **`get_platform_status`**, **`search_mcp_directory`** — browse the catalog.
+## How it loads light
 
-The bundled skill teaches Claude when to reach for each.
+The plugin exposes **17 meta-tools**, not 2,972 — `ask_pipeworx({question})` and friends route at runtime so you get the full catalog without paying the context tax for tools you'll never call this session.
+
+## Free tier + signup
+
+100 calls/day anonymous, IP-bound (rotates on networks). [Sign up free in 10s via GitHub](https://pipeworx.io/signup?via=cc_plugin) for 2,000/day + a stable account that doesn't rotate.
 
 ## Verify after install
-
-In Claude Code, run:
 
 ```text
 /mcp
 ```
 
-You should see `pipeworx` connected with ~17 tools. Then try:
+You should see `pipeworx` connected with ~17 tools.
 
-> What was the unemployment rate last month?
+## What's loaded
 
-Claude should call `ask_pipeworx` (which routes to `fred_get_series`) and return a real number.
+- **`ask_pipeworx`** — natural-language router across all 650 packs.
+- **`discover_tools`** — top-20 relevant tools for a task, with full schemas.
+- **`entity_profile`** / **`compare_entities`** / **`recent_changes`** / **`resolve_entity`** — fan-out across multiple packs in one call.
+- **`validate_claim`** — fact-check claims against SEC XBRL.
+- **`remember`** / **`recall`** / **`forget`** — persistent memory across sessions.
+- **`list_packs`** / **`search_packs`** / **`get_pack_tools`** / **`get_connection_config`** / **`get_platform_status`** / **`search_mcp_directory`** — browse the catalog.
 
-## Need direct pack access?
+The bundled skill teaches Claude when to reach for each.
 
-If you want a specific pack's tools loaded directly (e.g., to call `attom_property_search` without going through `ask_pipeworx`), add a scoped MCP entry:
+## Direct pack access
+
+For a specific pack's tools loaded directly (e.g., `attom_property_search` without going through `ask_pipeworx`), add a scoped MCP entry:
 
 ```json
 {
@@ -58,18 +67,18 @@ If you want a specific pack's tools loaded directly (e.g., to call `attom_proper
 }
 ```
 
-Or a vertical bundle (e.g., `?vertical=housing` for the housing data stack).
-
-## Higher rate limits
-
-The plugin runs on the anonymous tier (50 calls/day per IP). For higher limits (500/day BYO, 2,000/day OAuth, or unlimited paid), [sign up at pipeworx.io](https://pipeworx.io) and configure your own MCP entry with an `X-API-Key` header.
+Or a vertical bundle (e.g., `?vertical=housing` for the housing-data stack).
 
 ## Links
 
 - Gateway: https://gateway.pipeworx.io
-- Stack guide: https://pipeworx.io/stack
+- Status: https://pipeworx.io/status
 - Source: https://github.com/pipeworx-io/pipeworx
 
 ## License
 
 MIT
+
+---
+
+⭐ Star if you'd use this — helps other Claude Code users discover it.

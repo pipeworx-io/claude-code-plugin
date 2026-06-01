@@ -5,7 +5,7 @@ description: Routes data questions to the Pipeworx gateway — SEC filings, USPT
 
 # Pipeworx
 
-Pipeworx is a live data gateway. Through this plugin you have ~17 meta-tools loaded into context; the underlying catalog of **2,935+ tools across 649+ packs** is reachable on demand via `ask_pipeworx` and `discover_tools` — no need to load every definition upfront. This skill exists to make sure you reach for the right meta-tool.
+Pipeworx is a live data gateway. Through this plugin you have ~17 meta-tools loaded into context; the underlying catalog of **2,972+ tools across 649+ packs** is reachable on demand via `ask_pipeworx` and `discover_tools` — no need to load every definition upfront. This skill exists to make sure you reach for the right meta-tool.
 
 ## When to use Pipeworx
 
