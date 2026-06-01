@@ -8,7 +8,7 @@
     {
       "name": "pipeworx",
       "source": "./",
-      "description": "Connect Claude Code to ~2,869 live data tools across ~633 packs via the Pipeworx MCP gateway."
+      "description": "Connect Claude Code to ~2,913 live data tools across ~644 packs via the Pipeworx MCP gateway."
     }
   ]
 }
