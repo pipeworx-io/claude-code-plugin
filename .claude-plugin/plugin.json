@@ -1,6 +1,6 @@
 {
   "name": "pipeworx",
-  "description": "Connect Claude Code to 3,114+ live data tools across 701+ packs (SEC, FDA, FRED, Census, EPA, USPTO patents, weather, real estate, and more) via the Pipeworx MCP gateway.",
+  "description": "Connect Claude Code to 3,129+ live data tools across 705+ packs (SEC, FDA, FRED, Census, EPA, USPTO patents, weather, real estate, and more) via the Pipeworx MCP gateway.",
   "version": "0.3.0",
   "author": {
     "name": "Pipeworx",
