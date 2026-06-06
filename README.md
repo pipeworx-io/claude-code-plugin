@@ -1,6 +1,6 @@
 # Pipeworx for Claude Code
 
-Give Claude one MCP that reaches **2,972 live-data tools across 650 sources** — SEC filings, USPTO patents, FRED, Census, FDA, EPA, USAspending, Polymarket, Zillow, weather, and 640+ more — without loading 2,972 tool schemas into your context window.
+Give Claude one MCP that reaches **3,300+ live-data tools across 750+ sources** — SEC filings, USPTO patents, FRED, Census, FDA, EPA, USAspending, Polymarket, Zillow, weather, and 740+ more — without loading 3,300+ tool schemas into your context window.
 
 ## Install
 
@@ -26,7 +26,7 @@ Claude picks the right tool via `ask_pipeworx` — no pack-name memorization req
 
 ## How it loads light
 
-The plugin exposes **17 meta-tools**, not 2,972 — `ask_pipeworx({question})` and friends route at runtime so you get the full catalog without paying the context tax for tools you'll never call this session.
+The plugin exposes **~26 meta-tools**, not all 3,300+ — `ask_pipeworx({question})` and friends route at runtime so you get the full catalog without paying the context tax for tools you'll never call this session.
 
 ## Free tier + signup
 
@@ -38,11 +38,11 @@ The plugin exposes **17 meta-tools**, not 2,972 — `ask_pipeworx({question})` a
 /mcp
 ```
 
-You should see `pipeworx` connected with ~17 tools.
+You should see `pipeworx` connected with ~26 tools.
 
 ## What's loaded
 
-- **`ask_pipeworx`** — natural-language router across all 725 packs.
+- **`ask_pipeworx`** — natural-language router across all 750+ sources.
 - **`discover_tools`** — top-20 relevant tools for a task, with full schemas.
 - **`entity_profile`** / **`compare_entities`** / **`recent_changes`** / **`resolve_entity`** — fan-out across multiple packs in one call.
 - **`validate_claim`** — fact-check claims against SEC XBRL.
