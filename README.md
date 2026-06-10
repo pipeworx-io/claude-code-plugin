@@ -30,7 +30,7 @@ The plugin exposes **~26 meta-tools**, not all 3,300+ — `ask_pipeworx({questio
 
 ## Free tier + signup
 
-100 calls/day anonymous, IP-bound (rotates on networks). [Sign up free in 10s via GitHub](https://pipeworx.io/signup?via=cc_plugin) for 2,000/day + a stable account that doesn't rotate.
+100 calls/day anonymous, IP-bound (rotates on networks). [Sign up free in 10s via GitHub](https://pipeworx.io/signup?via=cc_plugin) for 200/day + a stable account that doesn't rotate.
 
 ## Verify after install
 

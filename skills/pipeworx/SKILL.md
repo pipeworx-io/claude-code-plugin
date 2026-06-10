@@ -38,8 +38,8 @@ Pipeworx provides cross-session memory via `remember`, `recall`, and `forget`. S
 ## Auth tiers
 
 - **Anonymous** (no key) — 50 calls/day per IP
-- **BYO** (`X-API-Key`) — 500/day
-- **OAuth** (GitHub signup) — 2,000/day
+- **BYO** (`X-API-Key`) — 200/day
+- **OAuth** (GitHub signup) — 200/day
 - **Paid** — unlimited
 
 For higher limits, the user can sign up at https://pipeworx.io.
