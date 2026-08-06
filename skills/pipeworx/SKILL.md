@@ -1,11 +1,11 @@
 ---
 name: pipeworx
-description: Routes data questions to the Pipeworx gateway — SEC filings, USPTO patents, FRED economic data, FDA drug data, Census, EPA, ATTOM real estate, weather, and 1356+ other live sources. Use whenever you need real numbers, filings, or facts that would otherwise be hallucinated.
+description: Routes data questions to the Pipeworx gateway — SEC filings, USPTO patents, FRED economic data, FDA drug data, Census, EPA, ATTOM real estate, weather, and 1395+ other live sources. Use whenever you need real numbers, filings, or facts that would otherwise be hallucinated.
 ---
 
 # Pipeworx
 
-Pipeworx is a live data gateway. Through this plugin you have ~26 meta-tools loaded into context; the underlying catalog of **5,189+ tools across 1364+ packs** is reachable on demand via `ask_pipeworx` and `discover_tools` — no need to load every definition upfront. This skill exists to make sure you reach for the right meta-tool.
+Pipeworx is a live data gateway. Through this plugin you have ~26 meta-tools loaded into context; the underlying catalog of **5,407+ tools across 1403+ packs** is reachable on demand via `ask_pipeworx` and `discover_tools` — no need to load every definition upfront. This skill exists to make sure you reach for the right meta-tool.
 
 ## When to use Pipeworx
 
