@@ -1,6 +1,6 @@
 # Pipeworx for Claude Code
 
-Give Claude one MCP that reaches **5,407+ live-data tools across 1403+ sources** — SEC filings, USPTO patents, FRED, Census, FDA, EPA, USAspending, Polymarket, Zillow, weather, and 1395+ more — without loading 5,000+ tool schemas into your context window.
+Give Claude one MCP that reaches **5,501+ live-data tools across 1,441+ sources** — SEC filings, USPTO patents, FRED, Census, FDA, EPA, USAspending, Polymarket, Zillow, weather, and 1433+ more — without loading 5,000+ tool schemas into your context window.
 
 ## Install
 
@@ -42,7 +42,7 @@ You should see `pipeworx` connected with ~26 tools.
 
 ## What's loaded
 
-- **`ask_pipeworx`** — natural-language router across all 1,300+ sources.
+- **`ask_pipeworx`** — natural-language router across all 1,441+ sources.
 - **`discover_tools`** — top-20 relevant tools for a task, with full schemas.
 - **`entity_profile`** / **`compare_entities`** / **`recent_changes`** / **`resolve_entity`** — fan-out across multiple packs in one call.
 - **`validate_claim`** — fact-check claims against SEC XBRL.
