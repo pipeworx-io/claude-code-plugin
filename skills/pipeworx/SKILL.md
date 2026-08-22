@@ -1,11 +1,11 @@
 ---
 name: pipeworx
-description: Routes data questions to the Pipeworx gateway — SEC filings, USPTO patents, FRED economic data, FDA drug data, Census, EPA, ATTOM real estate, weather, and 1,433+ other live sources. Use whenever you need real numbers, filings, or facts that would otherwise be hallucinated.
+description: Routes data questions to the Pipeworx gateway — SEC filings, USPTO patents, FRED economic data, FDA drug data, Census, EPA, ATTOM real estate, weather, and 1,455+ other live sources. Use whenever you need real numbers, filings, or facts that would otherwise be hallucinated.
 ---
 
 # Pipeworx
 
-Pipeworx is a live data gateway. Through this plugin you have ~31 meta-tools loaded into context; the underlying catalog of **5,501+ tools across 1,441+ packs** is reachable on demand via `ask_pipeworx` and `discover_tools` — no need to load every definition upfront. This skill exists to make sure you reach for the right meta-tool.
+Pipeworx is a live data gateway. Through this plugin you have ~31 meta-tools loaded into context; the underlying catalog of **5,581+ tools across 1,463+ packs** is reachable on demand via `ask_pipeworx` and `discover_tools` — no need to load every definition upfront. This skill exists to make sure you reach for the right meta-tool.
 
 ## When to use Pipeworx
 
@@ -37,9 +37,9 @@ Pipeworx provides cross-session memory via `remember`, `recall`, and `forget`. S
 
 ## Auth tiers
 
-- **Anonymous** (no key) — 50 calls/day per IP
+- **OAuth** (sign in with GitHub — free, one click) — 200/day
 - **BYO** (`X-API-Key`) — 200/day
-- **OAuth** (GitHub signup) — 200/day
+- **Anonymous** (no key, no account) — 50 calls/day per IP
 - **Paid** — unlimited
 
 For higher limits, the user can sign up at https://pipeworx.io.
