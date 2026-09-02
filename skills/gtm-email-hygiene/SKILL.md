@@ -91,10 +91,15 @@ Report the counts at each stage. "Started with 4,000 domains, 620 had no MX,
 
 Checked live on 2026-09-01, so you do not waste a call finding out:
 
-- **`check_domain` and `validate_email` (disify) are returning
-  `Disify API error: 403 — Access denied`.** Both tools, both arguments shapes.
-  The upstream is refusing us. Do not route a disposable-domain check here right
-  now; it will fail, not silently, but it will fail.
+- **`check_domain` and `validate_email` (disify) are BYOK now.** The earlier
+  `403 — Access denied` was a hostname bug on our side, and fixing it exposed
+  what the 403 had been hiding: `429 — Anonymous daily quota exceeded`. Disify
+  meters its anonymous tier per IP, our whole fleet shares one egress address,
+  and that pool is somebody else's by the time most callers arrive — measured
+  2026-09-01, three consecutive calls 429'd while the same URL answered 200
+  with full data from a laptop. Pass your own key as `_apiKey` and it goes
+  straight through; without one the tools now say so in the error rather than
+  looking broken. Pipeworx does not front a key for this pack.
 - **`check_email` (IPQualityScore)** returns
   `"You have insufficient credits to make this query."` The shared key is
   exhausted. The tool itself works — pass your own IPQualityScore key as

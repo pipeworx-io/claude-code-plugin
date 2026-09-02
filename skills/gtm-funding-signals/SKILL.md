@@ -43,25 +43,27 @@ attached to the data when you hand a list to a human.
 
 ### Arguments that actually work
 
-`form_d_recent_raises` takes `since`, `until`, `industry`, `min_amount`,
-`include_amendments`, `limit` (1-10).
+`form_d_recent_raises` takes `since`, `until`, `days`, `industry`,
+`minimum_sold` (alias `min_amount`), `include_amendments`, `limit` (1-10).
 
-**Two traps, both measured live on 2026-09-01:**
+Amount filtering works: `minimum_sold` / `min_amount` is a floor on
+`total_amount_sold` in USD. `days` looks back that many days from `until`; an
+explicit `since` wins over it. Anything else is **rejected** with the list of
+accepted arguments — a misspelled argument errors rather than being dropped.
 
-1. **There is no `days` argument.** Passing `days: 60` is silently dropped and
-   you get the 7-day default window. Use `since` / `until` (`YYYY-MM-DD`).
-   Confirmed: `{"days":60}` returned `window.since` = 7 days ago.
-2. **`min_amount` is declared but not applied.** It is in the schema
-   ("Optional minimum reported amount sold in USD") and it does nothing.
-   Confirmed: `{"since":"2026-08-01","min_amount":999999999}` returned the same
-   `total_search_matches` (4,815) and the same first row — an offering with
-   `total_amount_sold: 25000`. **Filter by amount yourself, client-side**, over
-   a page of results. Do not tell a user the gateway filtered it.
+**The trap that remains — read your denominators.** Filters are applied to
+hydrated filings, and only the newest slice of the window is hydrated. Three
+counts come back and they mean different things:
 
-`limit` caps at 10 per call. For a real list, page by walking `since`/`until`
-day by day and concatenating — and **print your denominator**
-(`total_search_matches`) next to your row count, so nobody mistakes 10 hydrated
-rows for the whole window.
+- `total_search_matches` — every Form D in the window, before any filter.
+- `scanned` — how many of those were actually inspected (up to 60 when
+  filtering).
+- `matched_in_scan` — how many of the scanned ones passed your filter.
+
+So `returned: 5` out of `total_search_matches: 4829` is **not** "only 5 raises
+over $10M exist" — it is "5 of the 60 newest notices cleared the floor."
+Narrow `since`/`until` and page through rather than reporting a short list as
+scarcity, and quote `scanned` alongside any count you give a user.
 
 ## Verified invocation
 
