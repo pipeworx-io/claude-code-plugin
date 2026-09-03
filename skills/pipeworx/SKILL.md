@@ -29,6 +29,29 @@ Reach for it any time a request needs **real, current, verifiable data**:
 3. **Need everything-about-an-entity?** Call `entity_profile({ name: "Apple" })` to fan out across SEC, USPTO, news, etc. in one call.
 4. **Fact-checking a claim?** Call `validate_claim({ claim: "..." })` for a structured verdict with sources.
 
+## Two tools can want the same name, and it resolves three different ways
+
+A generic tool name — `quote`, `search_dockets`, `search_notices`,
+`get_company_facts` — is often claimed by more than one pack. What happens when
+you call the bare name is **not consistent**, and one of the three outcomes is
+silent. Verified 2026-09-02:
+
+| Bare name | What happens |
+|---|---|
+| `search_dockets`, `search_notices` | `Unknown tool` — call the namespaced form (`court_listener_search_dockets`, `ted_eu_search_notices`) |
+| `get_company_facts`, `search_filings` | a clean `ambiguous_tool_name` error naming the candidates |
+| `quote` | **a 200 — one pack silently wins.** `quote({symbol:"AAPL"})` returns twelvedata's payload; `fmp_quote` returns a different vendor's, in a different shape |
+
+That third row is the dangerous one. You get real, well-formed data from a
+source you did not choose — and for market data, vendors differ in timing,
+coverage and licensing.
+
+**So never call a generic bare name and assume you know the source.** Resolve it
+first with `discover_tools({ task: "..." })`, which returns names as actually
+exposed, and prefer the prefixed form (`fmp_quote`, `twelvedata_quote`) whenever
+one exists. An `Unknown tool` on a plausible name is a naming artefact, never a
+statement about coverage.
+
 Specific pack tools (e.g., `sec_edgar_recent_filings`) are not in your context — call `ask_pipeworx` or `discover_tools` first. If you know exactly which pack you need long-term, the user can add a scoped MCP entry (e.g., `gateway.pipeworx.io/edgar/mcp`) to load that pack's tools directly.
 
 ## Persistent memory
