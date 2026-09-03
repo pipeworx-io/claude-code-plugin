@@ -29,28 +29,31 @@ Reach for it any time a request needs **real, current, verifiable data**:
 3. **Need everything-about-an-entity?** Call `entity_profile({ name: "Apple" })` to fan out across SEC, USPTO, news, etc. in one call.
 4. **Fact-checking a claim?** Call `validate_claim({ claim: "..." })` for a structured verdict with sources.
 
-## Two tools can want the same name, and it resolves three different ways
+## Two tools can want the same name
 
 A generic tool name — `quote`, `search_dockets`, `search_notices`,
-`get_company_facts` — is often claimed by more than one pack. What happens when
-you call the bare name is **not consistent**, and one of the three outcomes is
-silent. Verified 2026-09-02:
+`get_company_facts` — is often claimed by more than one pack. Calling the bare
+name returns a recoverable `ambiguous_tool_name` error that lists the
+alternatives with their packs:
 
-| Bare name | What happens |
-|---|---|
-| `search_dockets`, `search_notices` | `Unknown tool` — call the namespaced form (`court_listener_search_dockets`, `ted_eu_search_notices`) |
-| `get_company_facts`, `search_filings` | a clean `ambiguous_tool_name` error naming the candidates |
-| `quote` | **a 200 — one pack silently wins.** `quote({symbol:"AAPL"})` returns twelvedata's payload; `fmp_quote` returns a different vendor's, in a different shape |
+```
+quote({symbol:"AAPL"})
+→ { "error": "ambiguous_tool_name",
+    "message": "\"quote\" is exported by 3 packs. Pick a specific one.",
+    "alternatives": [{ "name": "twelvedata_quote", "pack": "twelvedata" }, …] }
+```
 
-That third row is the dangerous one. You get real, well-formed data from a
-source you did not choose — and for market data, vendors differ in timing,
-coverage and licensing.
+**Read the alternatives and pick deliberately — they are different vendors, not
+copies.** For market data especially, packs differ in quote timing, venue
+coverage and licensing, so `twelvedata_quote` and `fmp_quote` are different
+answers to the same question, in different shapes.
 
-**So never call a generic bare name and assume you know the source.** Resolve it
-first with `discover_tools({ task: "..." })`, which returns names as actually
-exposed, and prefer the prefixed form (`fmp_quote`, `twelvedata_quote`) whenever
-one exists. An `Unknown tool` on a plausible name is a naming artefact, never a
-statement about coverage.
+A separate case looks similar and is not: a *namespaced* name for a tool that
+never collided — `court_listener_list_docket_filings` — returns `Unknown tool`,
+because namespacing is applied per-collision, not per-pack. A pack can have some
+tools prefixed and most bare. When a plausible name comes back unknown, resolve
+it with `discover_tools({ task: "..." })` rather than concluding the capability
+is missing.
 
 Specific pack tools (e.g., `sec_edgar_recent_filings`) are not in your context — call `ask_pipeworx` or `discover_tools` first. If you know exactly which pack you need long-term, the user can add a scoped MCP entry (e.g., `gateway.pipeworx.io/edgar/mcp`) to load that pack's tools directly.
 

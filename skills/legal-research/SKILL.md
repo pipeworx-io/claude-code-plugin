@@ -38,10 +38,13 @@ that will answer a different question.
 **`search_dockets` is not a callable name.** It collides with the
 regulations.gov pack, so both are exposed namespaced:
 `court_listener_search_dockets` and `regulations_gov_search_dockets`. Every
-*other* tool in this table is exposed under its bare name. Calling
-`search_dockets` returns `Unknown tool`, and calling
-`court_listener_list_docket_filings` does too — the namespacing is per-collision,
-not per-pack.
+*other* tool in this table is exposed under its bare name.
+
+Calling `search_dockets` returns a recoverable `ambiguous_tool_name` error
+listing both — read it and pick the CourtListener one. Calling
+`court_listener_list_docket_filings` behaves differently: it returns
+`Unknown tool`, because that tool never collided and so was never namespaced.
+The prefixing is per-collision, not per-pack.
 
 ## Read your denominators — a missing PDF is not a missing filing
 
